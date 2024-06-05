@@ -24,6 +24,11 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
+offlineFallback({
+  urls: ['/index.html', '/'],
+  strategy: new workbox.strategies.NetworkFirst(),
+});
+
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
